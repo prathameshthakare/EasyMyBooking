@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: ticket-booking
+          uri: lb://ticket-booking
+          predicates:
+            - Path=/bookings/**
+        - id: place
+          uri: lb://place
+          predicates:
+            - Path=/api/easeMyBooking/**
+        - id: UserServiceApp
+          uri: lb://UserServiceApp
+          predicates:
+            - Path=/auth/**
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8789/eureka/
